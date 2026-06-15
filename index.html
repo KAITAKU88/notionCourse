@@ -1,0 +1,1136 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Thành thạo Notion qua 5 dự án thực chiến</title>
+  <meta name="description" content="Khóa học Notion 13 buổi — từ người mới hoàn toàn đến xây dựng hệ thống quản lý tài chính, thói quen, và cuộc sống ngay trên Notion. Học phí 999.000đ." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,500;0,6..12,600;0,6..12,700;1,6..12,400&family=Quicksand:wght@600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@latest/tabler-icons.min.css" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fdfbf7;
+      --surface: #ffffff;
+      --surface-tint: #fff5f3;
+      --border: #e8e4df;
+      --text: #2c363f;
+      --muted: #5a6570;
+      --faint: #8a939c;
+      --coral: #ff8e7f;
+      --coral-dark: #9c4237;
+      --coral-container: #ffdad5;
+      --mint: #a0e8af;
+      --mint-dark: #256b3e;
+      --mint-container: #e8f9ec;
+      --deep-slate: #2c363f;
+      --shadow-sm: 0 4px 16px rgba(44, 54, 63, 0.06);
+      --shadow-md: 0 8px 24px rgba(44, 54, 63, 0.08);
+      --shadow-coral: 0 12px 32px rgba(255, 142, 127, 0.22);
+      --radius-lg: 24px;
+      --radius-md: 16px;
+      --radius-full: 9999px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Nunito Sans', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+  .badge {
+      display: inline-block;
+      background: var(--mint-container);
+      color: var(--mint-dark);
+      border: 1px solid rgba(160, 232, 175, 0.6);
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 12px;
+      font-weight: 700;
+      padding: 6px 18px;
+      border-radius: var(--radius-full);
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero {
+      padding: 3rem 1.5rem 1.5rem;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .hero-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 3.75rem);
+      font-weight: 700;
+      line-height: 1.1;
+      letter-spacing: -0.02em;
+      color: var(--deep-slate);
+      margin-bottom: 1.25rem;
+    }
+
+    .hero-title .accent {
+      color: var(--coral);
+      position: relative;
+    }
+
+    .hero-sub {
+      font-size: 18px;
+      color: var(--muted);
+      max-width: 520px;
+      margin: 0 auto 2.5rem;
+      line-height: 1.75;
+    }
+
+    .blocks-row {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      margin-bottom: 2.5rem;
+      flex-wrap: wrap;
+    }
+
+    .block-chip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-full);
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--muted);
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .block-chip .dot {
+      width: 8px; height: 8px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .dot-coral  { background: var(--coral); }
+    .dot-mint   { background: var(--mint); }
+    .dot-slate  { background: #5e5e5c; }
+    .dot-lemon  { background: #fff9c4; border: 1px solid #e8e0a0; }
+
+    .cta-btn {
+      display: inline-block;
+      background: var(--coral);
+      color: #fff;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      font-weight: 700;
+      padding: 16px 44px;
+      border-radius: var(--radius-full);
+      border: none;
+      cursor: pointer;
+      text-decoration: none;
+      box-shadow: var(--shadow-coral);
+      transition: transform 0.15s, box-shadow 0.2s, opacity 0.2s;
+    }
+    .cta-btn:hover  { transform: translateY(-2px); box-shadow: 0 16px 40px rgba(255, 142, 127, 0.3); }
+    .cta-btn:active { transform: scale(0.98); }
+    .cta-btn:disabled { opacity: 0.55; cursor: not-allowed; transform: none; box-shadow: none; }
+    .cta-btn.full   { width: 100%; text-align: center; }
+    .cta-btn.mint   { background: var(--mint-dark); box-shadow: 0 8px 24px rgba(37, 107, 62, 0.2); }
+
+    .price-note {
+      font-size: 13px;
+      color: var(--faint);
+      margin-top: 0.75rem;
+    }
+
+    .section {
+      padding: 0.75rem 1.5rem;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .section-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 1.5rem;
+      box-shadow: var(--shadow-md);
+      border: 1px solid var(--border);
+    }
+
+    .section-label {
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--coral-dark);
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+    }
+
+    .section-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+      font-weight: 600;
+      color: var(--deep-slate);
+      margin-bottom: 1.25rem;
+      line-height: 1.25;
+    }
+
+    .pain-box, .solution-box {
+      border-radius: var(--radius-md);
+      padding: 1.4rem 1.5rem;
+    }
+
+    .pain-box {
+      background: #fff9f0;
+      border: 1px solid #f5e6d0;
+    }
+
+    .solution-box {
+      background: var(--mint-container);
+      border: 1px solid rgba(160, 232, 175, 0.5);
+      margin-top: 1rem;
+    }
+
+    .pain-box p    { font-size: 15px; color: #7a6558; line-height: 1.75; }
+    .solution-box p{ font-size: 15px; color: var(--mint-dark); line-height: 1.75; }
+    .solution-box strong { color: var(--mint-dark); font-weight: 700; }
+
+    .curriculum { display: flex; flex-direction: column; gap: 10px; }
+
+    .session {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      cursor: pointer;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .session:hover  { border-color: rgba(255, 142, 127, 0.4); box-shadow: var(--shadow-sm); }
+    .session.active { border-color: var(--coral); box-shadow: 0 4px 20px rgba(255, 142, 127, 0.12); }
+
+    .session-header {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 15px 16px;
+      user-select: none;
+    }
+
+    .session-num {
+      background: var(--coral-container);
+      color: var(--coral-dark);
+      font-size: 11px;
+      font-weight: 700;
+      width: 36px; height: 36px;
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .session-num.special {
+      background: #e4e2de;
+      color: #474744;
+    }
+
+    .session-title {
+      flex: 1;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--text);
+    }
+
+    .session-toggle {
+      color: var(--faint);
+      font-size: 14px;
+      transition: transform 0.2s, color 0.2s;
+      flex-shrink: 0;
+    }
+
+    .session.active .session-toggle {
+      transform: rotate(180deg);
+      color: var(--coral);
+    }
+
+    .session-body {
+      display: none;
+      padding: 0 16px 16px 64px;
+    }
+
+    .session.active .session-body { display: block; }
+
+    .session-body ul { list-style: none; }
+
+    .session-body ul li {
+      font-size: 13px;
+      color: var(--muted);
+      padding: 5px 0;
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      line-height: 1.55;
+    }
+
+    .session-body ul li::before {
+      content: '→';
+      color: var(--coral);
+      font-size: 12px;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .info-card {
+      background: var(--bg);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-md);
+      padding: 18px 20px;
+    }
+
+    .info-card .icon {
+      font-size: 22px;
+      color: var(--coral);
+      margin-bottom: 8px;
+    }
+
+    .info-card .label {
+      font-size: 11px;
+      color: var(--faint);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      font-weight: 700;
+      margin-bottom: 4px;
+    }
+
+    .info-card .value {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--text);
+      line-height: 1.4;
+    }
+
+    .span-2 { grid-column: span 2; }
+
+    .payment-section {
+      padding: 1.5rem 1.5rem 3rem;
+      text-align: center;
+      max-width: 760px;
+      margin: 0 auto;
+    }
+
+    .price-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.75rem;
+      margin-bottom: 1.75rem;
+      text-align: left;
+      box-shadow: var(--shadow-md);
+    }
+
+    .price-big {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 4rem;
+      font-weight: 700;
+      color: var(--coral);
+      line-height: 1;
+      margin-bottom: 0.2rem;
+    }
+
+    .price-unit {
+      font-size: 14px;
+      color: var(--faint);
+      margin-bottom: 1.75rem;
+    }
+
+    .perks { display: flex; flex-direction: column; gap: 12px; margin-bottom: 2rem; }
+
+    .perk {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-size: 14px;
+      color: var(--muted);
+    }
+
+    .perk-dot {
+      width: 24px; height: 24px;
+      background: var(--mint-container);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      color: var(--mint-dark);
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    .qr-box {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 1.5rem;
+      text-align: center;
+      box-shadow: var(--shadow-md);
+    }
+
+    .form-group {
+      margin-bottom: 1.25rem;
+      text-align: left;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 13px;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 8px;
+      letter-spacing: 0.02em;
+    }
+
+    .form-input {
+      width: 100%;
+      padding: 14px 18px;
+      font-family: 'Nunito Sans', sans-serif;
+      font-size: 16px;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      background: var(--bg);
+      color: var(--text);
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .form-input:focus {
+      outline: none;
+      border-color: var(--mint);
+      box-shadow: 0 0 0 3px rgba(160, 232, 175, 0.45);
+    }
+
+    .form-hint {
+      font-size: 12px;
+      color: var(--faint);
+      margin-top: 6px;
+      line-height: 1.5;
+    }
+
+    .qr-countdown {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      background: var(--surface-tint);
+      border: 1px solid rgba(255, 142, 127, 0.35);
+      border-radius: var(--radius-md);
+      padding: 12px 16px;
+      font-size: 14px;
+      color: var(--coral-dark);
+      margin-bottom: 1rem;
+    }
+
+    .qr-countdown i { font-size: 18px; }
+
+    .qr-countdown strong {
+      font-variant-numeric: tabular-nums;
+      font-weight: 700;
+    }
+
+    .qr-countdown.urgent {
+      background: #fff9f0;
+      border-color: #f5c842;
+      color: #8a6530;
+      animation: pulse-countdown 1s ease infinite;
+    }
+
+    @keyframes pulse-countdown {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0.75; }
+    }
+
+    .qr-expired {
+      background: #fff9f0;
+      border: 1px solid #f5e6d0;
+      border-radius: var(--radius-md);
+      padding: 1.25rem 1rem;
+      text-align: center;
+    }
+
+    .qr-expired p {
+      font-size: 14px;
+      color: #7a6558;
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .qr-img-wrap {
+      width: 200px;
+      height: 200px;
+      background: #fff;
+      border-radius: var(--radius-md);
+      margin: 0 auto 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .qr-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+    }
+
+    .qr-label {
+      font-size: 15px;
+      color: var(--muted);
+      line-height: 1.65;
+      margin-bottom: 1rem;
+    }
+
+    .qr-label strong { color: var(--deep-slate); }
+
+    .waiting-status {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      background: var(--mint-container);
+      border: 1px solid rgba(160, 232, 175, 0.5);
+      border-radius: var(--radius-md);
+      padding: 14px 16px;
+      font-size: 14px;
+      color: var(--mint-dark);
+      margin-top: 1rem;
+    }
+
+    .waiting-spinner {
+      width: 18px;
+      height: 18px;
+      border: 2px solid rgba(37, 107, 62, 0.2);
+      border-top-color: var(--mint-dark);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .hidden { display: none !important; }
+
+    /* Success overlay */
+    .success-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(44, 54, 63, 0.55);
+      backdrop-filter: blur(8px);
+      z-index: 1000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+
+    .success-overlay.visible {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .success-card {
+      background: var(--surface);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 2rem;
+      max-width: 420px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 24px 64px rgba(44, 54, 63, 0.2);
+      animation: slideUp 0.4s ease;
+    }
+
+    @keyframes slideUp {
+      from { transform: translateY(24px); opacity: 0; }
+      to   { transform: translateY(0); opacity: 1; }
+    }
+
+    .success-icon {
+      width: 64px;
+      height: 64px;
+      background: var(--mint-container);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.25rem;
+      font-size: 32px;
+      color: var(--mint-dark);
+    }
+
+    .success-title {
+      font-family: 'Quicksand', sans-serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      color: var(--deep-slate);
+      margin-bottom: 0.5rem;
+    }
+
+    .success-desc {
+      font-size: 15px;
+      color: var(--muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.65;
+    }
+
+    .zalo-qr-wrap {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto 1rem;
+      border-radius: var(--radius-md);
+      overflow: hidden;
+      border: 1px solid var(--border);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .zalo-qr-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .zalo-link-text {
+      font-size: 13px;
+      color: var(--faint);
+      margin-bottom: 1rem;
+    }
+
+    footer {
+      border-top: 1px solid var(--border);
+      padding: 1.5rem;
+      text-align: center;
+      font-size: 12px;
+      color: var(--faint);
+      background: var(--surface);
+    }
+
+    @media (max-width: 480px) {
+      .info-grid { grid-template-columns: 1fr; }
+      .span-2    { grid-column: span 1; }
+      .price-big { font-size: 3.25rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="badge">Khóa học trực tuyến · 13 buổi</div>
+    <h1 class="hero-title">
+      Thành thạo <span class="accent">Notion</span><br>
+      qua 5 dự án thực chiến
+    </h1>
+    <p class="hero-sub">
+      Từ người mới hoàn toàn đến xây dựng hệ thống quản lý tài chính,
+      thói quen, và cuộc sống — ngay trên Notion.
+    </p>
+
+    <div class="blocks-row">
+      <div class="block-chip"><span class="dot dot-mint"></span>Quản lý thói quen</div>
+      <div class="block-chip"><span class="dot dot-coral"></span>Tài chính cá nhân</div>
+      <div class="block-chip"><span class="dot dot-slate"></span>Quan hệ &amp; mạng lưới</div>
+      <div class="block-chip"><span class="dot dot-lemon"></span>Notion AI &amp; MCP</div>
+    </div>
+
+    <a href="#payment" class="cta-btn">Đăng ký ngay — 999.000đ</a>
+    <p class="price-note">Giá sẽ tăng sau khi đủ học viên</p>
+  </div>
+
+  <div class="section">
+    <div class="section-card">
+      <div class="section-label">Vấn đề</div>
+      <h2 class="section-title">Bạn thấy Notion hay nhưng không biết bắt đầu từ đâu?</h2>
+
+      <div class="pain-box">
+        <p>Nhiều người thấy Notion rất mạnh mẽ — được bạn bè giới thiệu hoặc thấy trên mạng — nhưng mở ra lại loay hoay không biết dùng như thế nào, không biết tổ chức ra sao, rốt cuộc bỏ không dùng.</p>
+      </div>
+
+      <div class="solution-box">
+        <p><strong>Giải pháp:</strong> Học qua dự án thực chiến. Mỗi buổi bạn xây một thứ có ích ngay — từ to-do list đến hệ thống tài chính hoàn chỉnh. Vướng đâu hỏi ngay, sửa luôn.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-card">
+      <div class="section-label">Chương trình học</div>
+      <h2 class="section-title">13 buổi — từ nền tảng đến nâng cao</h2>
+
+      <div class="curriculum">
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">1</div>
+            <div class="session-title">Nền tảng Notion: Workspace, Blocks &amp; Sidebar</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Tạo tài khoản &amp; thiết lập Workspace, Private space, Favorite space</li>
+            <li>Khu vực Sidebar và cách tổ chức không gian làm việc</li>
+            <li>Notion Blocks từ cơ bản đến nâng cao</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">2</div>
+            <div class="session-title">Database — sức mạnh cốt lõi của Notion</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Notion Database: một dữ liệu, nhiều góc nhìn (Views)</li>
+            <li>Xây To-do list đơn giản và To-do list dạng Database</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">3</div>
+            <div class="session-title">Vòng tròn các mối quan hệ</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Bảng theo dõi và duy trì mạng lưới quan hệ</li>
+            <li>Thư viện ảnh với Gallery view</li>
+            <li>Nhóm đối tượng với tính năng Group</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">4</div>
+            <div class="session-title">Thư viện giải trí cá nhân</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Nhúng video, nhạc yêu thích trực tiếp vào Notion</li>
+            <li>Quản lý danh sách sách đang đọc</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">5</div>
+            <div class="session-title">Hệ thống quản lý thói quen</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Phương pháp 1: Mỗi thói quen là 1 cột</li>
+            <li>Phương pháp 2: Mỗi thói quen là 1 hàng</li>
+            <li>Template tự động sinh thói quen mỗi ngày</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num special">6–8</div>
+            <div class="session-title">Hệ thống quản lý tài chính cá nhân</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Bảng giao dịch thu chi và chuyển tiền nội bộ</li>
+            <li>Quản lý tài khoản, tài sản, tự thống kê theo thu chi</li>
+            <li>Phân bổ ngân sách hàng tháng + template tự động thêm ngân sách</li>
+            <li>Bảng mục tiêu tài chính tự theo dõi theo thu chi</li>
+            <li>Bảng quản lý công nợ</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">9</div>
+            <div class="session-title">Thiết kế hệ thống đẹp &amp; chuyên nghiệp</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Sử dụng Tab, Column, Link to view</li>
+            <li>Bố trí giao diện đẹp mắt và dễ dùng</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num special">10</div>
+            <div class="session-title">Notion MCP &amp; AI (Claude)</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Giới thiệu Notion MCP — kết hợp sức mạnh AI</li>
+            <li>Notion AI (trả phí) vs Claude / ChatGPT (miễn phí)</li>
+            <li>AI phân tích thiết kế, con người tự xây hệ thống</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num special">11</div>
+            <div class="session-title">Thực hành: AI thiết kế hệ thống CRM</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Dùng Claude phân tích &amp; thiết kế CRM quản lý khách hàng</li>
+            <li>So sánh tốc độ AI vs làm thủ công</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">12</div>
+            <div class="session-title">Đồng bộ Form với Notion qua Tally.so</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Tally.so = Google Form nhưng đồng bộ thẳng vào Notion</li>
+            <li>Tạo form khảo sát, điều tra — dữ liệu tự vào Notion</li>
+          </ul></div>
+        </div>
+
+        <div class="session" onclick="toggle(this)">
+          <div class="session-header">
+            <div class="session-num">13</div>
+            <div class="session-title">Tổng kết &amp; hỏi đáp</div>
+            <div class="session-toggle">▾</div>
+          </div>
+          <div class="session-body"><ul>
+            <li>Giải đáp mọi thắc mắc của học viên</li>
+            <li>Định hướng tiếp theo sau khóa học</li>
+          </ul></div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-card">
+      <div class="section-label">Thông tin khóa học</div>
+      <h2 class="section-title">Phù hợp với bạn không?</h2>
+
+      <div class="info-grid">
+        <div class="info-card">
+          <div class="icon"><i class="ti ti-clock"></i></div>
+          <div class="label">Thời lượng</div>
+          <div class="value">1 – 1.5 giờ / buổi</div>
+        </div>
+        <div class="info-card">
+          <div class="icon"><i class="ti ti-calendar"></i></div>
+          <div class="label">Số buổi</div>
+          <div class="value">13 buổi</div>
+        </div>
+        <div class="info-card">
+          <div class="icon"><i class="ti ti-user"></i></div>
+          <div class="label">Đối tượng</div>
+          <div class="value">Người mới hoàn toàn</div>
+        </div>
+        <div class="info-card">
+          <div class="icon"><i class="ti ti-device-laptop"></i></div>
+          <div class="label">Yêu cầu</div>
+          <div class="value">Máy tính, biết dùng cơ bản</div>
+        </div>
+        <div class="info-card span-2">
+          <div class="icon"><i class="ti ti-presentation"></i></div>
+          <div class="label">Phương pháp</div>
+          <div class="value">Giảng viên thao tác trực tiếp · Học viên làm theo · Hỏi ngay sửa luôn</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="payment">
+    <div class="payment-section">
+      <div class="section-label" style="text-align:center; margin-bottom: 0.4rem;">Đăng ký</div>
+      <h2 class="section-title" style="text-align:center; margin-bottom: 1.25rem;">Bắt đầu hành trình Notion của bạn</h2>
+
+      <div class="price-card">
+        <div class="price-big">999K</div>
+        <div class="price-unit">đồng · Trọn bộ 13 buổi</div>
+
+        <div class="perks">
+          <div class="perk"><div class="perk-dot">✓</div>Học trực tiếp, hỏi đáp ngay tại buổi học</div>
+          <div class="perk"><div class="perk-dot">✓</div>Tham gia nhóm Zalo cộng đồng học viên</div>
+          <div class="perk"><div class="perk-dot">✓</div>Xây 5 hệ thống thực chiến dùng được ngay</div>
+          <div class="perk"><div class="perk-dot">✓</div>Hướng dẫn kết hợp AI (Claude) với Notion</div>
+          <div class="perk"><div class="perk-dot">✓</div>Không cần kinh nghiệm — học từ đầu được</div>
+        </div>
+      </div>
+
+      <div class="qr-box" id="qr">
+
+        <div id="payment-form">
+          <div class="form-group">
+            <label class="form-label" for="zalo-name">Tên Zalo của bạn</label>
+            <input
+              type="text"
+              id="zalo-name"
+              class="form-input"
+              placeholder="VD: Nguyễn Văn A"
+              autocomplete="name"
+              maxlength="80"
+            />
+            <p class="form-hint">Dùng tên Zalo để chúng tôi xác nhận thanh toán và mời bạn vào nhóm học viên.</p>
+          </div>
+          <button type="button" class="cta-btn full" id="btn-create-payment">
+            Tạo mã QR thanh toán
+          </button>
+        </div>
+
+        <div id="payment-qr" class="hidden">
+          <div id="qr-active">
+            <div class="qr-img-wrap">
+              <img id="qr-image" src="" alt="Mã QR thanh toán Sepay" />
+            </div>
+
+            <div class="qr-label">
+              Quét mã QR để thanh toán<br>
+              <strong>Chuyển khoản 999.000đ</strong>
+            </div>
+
+            <div class="qr-countdown" id="qr-countdown">
+              <i class="ti ti-clock"></i>
+              <span>Mã QR hết hạn sau <strong id="countdown-text">5:00</strong></span>
+            </div>
+
+            <div class="waiting-status" id="waiting-status">
+              <div class="waiting-spinner"></div>
+              <span>Đang chờ xác nhận thanh toán từ ngân hàng…</span>
+            </div>
+          </div>
+
+          <div id="qr-expired" class="qr-expired hidden">
+            <p>Mã QR đã hết hạn (5 phút). Vui lòng tạo mã QR mới để tiếp tục thanh toán.</p>
+            <button type="button" class="cta-btn full" id="btn-regenerate-qr">Tạo mã QR mới</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <div class="success-overlay" id="success-overlay" aria-hidden="true">
+    <div class="success-card">
+      <div class="success-icon"><i class="ti ti-check"></i></div>
+      <h2 class="success-title">Thanh toán thành công!</h2>
+      <p class="success-desc">
+        Cảm ơn bạn đã đăng ký khóa học. Quét mã QR hoặc bấm link bên dưới để tham gia nhóm Zalo học viên.
+      </p>
+      <div class="zalo-qr-wrap">
+        <img src="zalo_group_qr.jpg" alt="Mã QR nhóm Zalo học viên" />
+      </div>
+      <p class="zalo-link-text">Quét QR hoặc bấm vào link</p>
+      <a
+        href="https://zalo.me/g/810hsjbv0rntmnrpkkhb"
+        id="zalo-group-link"
+        class="cta-btn mint"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Tham gia nhóm Zalo →
+      </a>
+    </div>
+  </div>
+
+  <footer>
+    Khóa học "Thành thạo Notion qua 5 dự án thực chiến" · 13 buổi · 999.000đ
+  </footer>
+
+  <script>
+    function toggle(el) {
+      const all = document.querySelectorAll('.session');
+      all.forEach(s => { if (s !== el) s.classList.remove('active'); });
+      el.classList.toggle('active');
+    }
+
+    const ZALO_GROUP_URL = 'https://zalo.me/g/810hsjbv0rntmnrpkkhb';
+    const POLL_INTERVAL_MS = 3000;
+    const QR_EXPIRY_MS = 5 * 60 * 1000;
+
+    let sessionId = null;
+    let pollTimer = null;
+    let countdownTimer = null;
+    let qrExpiresAt = null;
+
+    const zaloNameInput = document.getElementById('zalo-name');
+    const btnCreatePayment = document.getElementById('btn-create-payment');
+    const btnRegenerateQr = document.getElementById('btn-regenerate-qr');
+    const paymentForm = document.getElementById('payment-form');
+    const paymentQr = document.getElementById('payment-qr');
+    const qrActive = document.getElementById('qr-active');
+    const qrExpired = document.getElementById('qr-expired');
+    const qrImage = document.getElementById('qr-image');
+    const qrCountdown = document.getElementById('qr-countdown');
+    const countdownText = document.getElementById('countdown-text');
+    const waitingStatus = document.getElementById('waiting-status');
+    const successOverlay = document.getElementById('success-overlay');
+    const zaloGroupLink = document.getElementById('zalo-group-link');
+
+    function formatCountdown(ms) {
+      const totalSec = Math.max(0, Math.ceil(ms / 1000));
+      const m = Math.floor(totalSec / 60);
+      const s = totalSec % 60;
+      return `${m}:${s.toString().padStart(2, '0')}`;
+    }
+
+    function stopCountdown() {
+      if (countdownTimer) {
+        clearInterval(countdownTimer);
+        countdownTimer = null;
+      }
+      qrExpiresAt = null;
+      qrCountdown.classList.remove('urgent');
+    }
+
+    function handleQrExpired() {
+      stopCountdown();
+      stopPolling();
+      sessionId = null;
+      qrActive.classList.add('hidden');
+      qrExpired.classList.remove('hidden');
+    }
+
+    function startCountdown() {
+      stopCountdown();
+      qrExpiresAt = Date.now() + QR_EXPIRY_MS;
+      qrActive.classList.remove('hidden');
+      qrExpired.classList.add('hidden');
+      countdownText.textContent = formatCountdown(QR_EXPIRY_MS);
+
+      countdownTimer = setInterval(() => {
+        const remaining = qrExpiresAt - Date.now();
+        if (remaining <= 0) {
+          handleQrExpired();
+          return;
+        }
+        countdownText.textContent = formatCountdown(remaining);
+        if (remaining <= 60_000) {
+          qrCountdown.classList.add('urgent');
+        }
+      }, 1000);
+    }
+
+    function resetPaymentUi() {
+      stopCountdown();
+      stopPolling();
+      sessionId = null;
+      paymentQr.classList.add('hidden');
+      paymentForm.classList.remove('hidden');
+      qrActive.classList.remove('hidden');
+      qrExpired.classList.add('hidden');
+      waitingStatus.classList.remove('hidden');
+    }
+
+    function showSuccess(url) {
+      stopCountdown();
+      stopPolling();
+      successOverlay.classList.add('visible');
+      successOverlay.setAttribute('aria-hidden', 'false');
+      zaloGroupLink.href = url || ZALO_GROUP_URL;
+      document.body.style.overflow = 'hidden';
+    }
+
+    function stopPolling() {
+      if (pollTimer) {
+        clearInterval(pollTimer);
+        pollTimer = null;
+      }
+    }
+
+    async function checkPaymentStatus() {
+      if (!sessionId) return;
+
+      try {
+        const res = await fetch(`/api/payment-status/${sessionId}`);
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data.paid) {
+          showSuccess(data.zaloGroupUrl);
+        }
+      } catch {
+        /* retry on next poll */
+      }
+    }
+
+    function startPolling() {
+      stopPolling();
+      pollTimer = setInterval(checkPaymentStatus, POLL_INTERVAL_MS);
+      checkPaymentStatus();
+    }
+
+    btnCreatePayment.addEventListener('click', async () => {
+      const zaloName = zaloNameInput.value.trim();
+      if (!zaloName) {
+        zaloNameInput.focus();
+        zaloNameInput.style.borderColor = 'var(--coral)';
+        return;
+      }
+      zaloNameInput.style.borderColor = '';
+
+      btnCreatePayment.disabled = true;
+      btnCreatePayment.textContent = 'Đang tạo mã QR…';
+
+      try {
+        const res = await fetch('/api/create-payment', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ zaloName }),
+        });
+
+        const data = await res.json();
+        if (!res.ok) {
+          alert(data.error || 'Không thể tạo mã QR. Vui lòng thử lại.');
+          return;
+        }
+
+        sessionId = data.sessionId;
+        qrImage.src = data.qrUrl;
+
+        paymentForm.classList.add('hidden');
+        paymentQr.classList.remove('hidden');
+        waitingStatus.classList.remove('hidden');
+
+        startCountdown();
+        startPolling();
+      } catch {
+        alert('Lỗi kết nối. Vui lòng kiểm tra mạng và thử lại.');
+      } finally {
+        btnCreatePayment.disabled = false;
+        btnCreatePayment.textContent = 'Tạo mã QR thanh toán';
+      }
+    });
+
+    btnRegenerateQr.addEventListener('click', resetPaymentUi);
+
+    /* Dev/test: ?paid=true vẫn hiện màn hình thành công */
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      if (params.get('paid') === 'true') {
+        showSuccess(ZALO_GROUP_URL);
+      }
+    })();
+  </script>
+
+</body>
+</html>

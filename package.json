@@ -1,0 +1,15 @@
+{
+  "name": "notion-course-landing",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "node server.js",
+    "start": "NODE_ENV=production node server.js"
+  },
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "vite": "^6.3.5"
+  }
+}
