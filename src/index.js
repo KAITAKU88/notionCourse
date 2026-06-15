@@ -15,9 +15,16 @@ function verifySepayAuth(request, env) {
   const apiKey = env.SEPAY_API_KEY;
   if (!apiKey) return true;
 
-  const auth = request.headers.get('Authorization') || '';
+  const auth = (request.headers.get('Authorization') || '').trim();
+  if (!auth) return false;
+
   const expected = `Apikey ${apiKey}`;
-  return auth === expected || auth === apiKey;
+  if (auth === expected || auth === apiKey) return true;
+
+  // Sepay có thể gửi Apikey / APIKEY — so khớng không phân biệt hoa thường
+  const lowerAuth = auth.toLowerCase();
+  const lowerKey = apiKey.toLowerCase();
+  return lowerAuth === `apikey ${lowerKey}` || lowerAuth === lowerKey;
 }
 
 async function handleApi(request, env, pathname) {

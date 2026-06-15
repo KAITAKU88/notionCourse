@@ -3,6 +3,7 @@
   "name": "notion-course",
   "main": "src/index.js",
   "compatibility_date": "2025-04-01",
+  "workers_dev": true,
   "assets": {
     "directory": "./public",
     "binding": "ASSETS"
@@ -11,6 +12,12 @@
     {
       "binding": "PAYMENTS",
       "id": "5e94d063eb48405c976fe11cf0be1ca7"
+    }
+  ],
+  "routes": [
+    {
+      "pattern": "notion.templatestores.com",
+      "custom_domain": true
     }
   ]
 }

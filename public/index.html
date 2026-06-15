@@ -4,7 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Thành thạo Notion qua 5 dự án thực chiến</title>
-  <meta name="description" content="Khóa học Notion 13 buổi — từ người mới hoàn toàn đến xây dựng hệ thống quản lý tài chính, thói quen, và cuộc sống ngay trên Notion. Học phí 999.000đ." />
+  <meta name="description" content="Khóa học Notion 13 buổi — từ người mới hoàn toàn đến xây dựng hệ thống quản lý tài chính, thói quen, và cuộc sống ngay trên Notion." />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/og-image.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="Khóa học Notion" />
+  <meta property="og:title" content="Thành thạo Notion qua 5 dự án thực chiến" />
+  <meta property="og:description" content="13 buổi học trực tuyến — từ người mới đến xây hệ thống tài chính, thói quen và cuộc sống trên Notion. Khóa khai giảng khi đủ 10 học viên." />
+  <meta property="og:image" content="https://notion.templatestores.com/og-image.png" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  <meta property="og:image:alt" content="Khóa học Thành thạo Notion qua 5 dự án thực chiến" />
+  <meta property="og:url" content="https://notion.templatestores.com/" />
+  <meta property="og:locale" content="vi_VN" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Thành thạo Notion qua 5 dự án thực chiến" />
+  <meta name="twitter:description" content="13 buổi học trực tuyến — xây 5 hệ thống thực chiến trên Notion từ con số 0." />
+  <meta name="twitter:image" content="https://notion.templatestores.com/og-image.png" />
   <meta name="color-scheme" content="light dark" />
   <script>
     (function () {
@@ -163,8 +179,8 @@
 
     .theme-toggle {
       position: fixed;
-      top: 1rem;
-      right: 1rem;
+      top: max(1rem, env(safe-area-inset-top, 0px));
+      right: max(1rem, env(safe-area-inset-right, 0px));
       z-index: 900;
       width: 44px;
       height: 44px;
@@ -779,10 +795,116 @@
       font-weight: 600;
     }
 
+    @media (max-width: 640px) {
+      .hero {
+        padding: 2.75rem 1rem 1.25rem;
+      }
+
+      .hero-sub {
+        font-size: 16px;
+        margin-bottom: 1.75rem;
+      }
+
+      .section {
+        padding: 0.5rem 1rem;
+      }
+
+      .section-card {
+        padding: 1.35rem 1.1rem;
+      }
+
+      .session-header {
+        padding: 12px;
+        gap: 10px;
+        align-items: flex-start;
+      }
+
+      .session-num {
+        width: 32px;
+        height: 32px;
+        font-size: 10px;
+        border-radius: 10px;
+      }
+
+      .session-title {
+        font-size: 13px;
+        line-height: 1.45;
+      }
+
+      .session-body {
+        padding: 0 12px 14px 12px;
+      }
+
+      .payment-section {
+        padding: 1rem 1rem 2rem;
+      }
+
+      .price-card {
+        padding: 1.5rem 1.2rem;
+      }
+
+      .qr-box {
+        padding: 1.35rem 1rem;
+      }
+
+      .cta-btn {
+        padding: 14px 24px;
+        font-size: 15px;
+        max-width: 100%;
+      }
+
+      .waiting-status {
+        font-size: 13px;
+        line-height: 1.45;
+        text-align: left;
+      }
+
+      .success-overlay {
+        padding: max(1rem, env(safe-area-inset-bottom, 0px)) 1rem;
+        align-items: flex-end;
+      }
+
+      .success-card {
+        padding: 1.75rem 1.25rem 1.5rem;
+        max-height: calc(100vh - 2rem);
+        overflow-y: auto;
+      }
+
+      .zalo-qr-wrap {
+        width: min(220px, 100%);
+        height: auto;
+        aspect-ratio: 1;
+      }
+    }
+
     @media (max-width: 480px) {
       .info-grid { grid-template-columns: 1fr; }
       .span-2    { grid-column: span 1; }
       .price-big { font-size: 3.25rem; }
+      .theme-toggle {
+        width: 40px;
+        height: 40px;
+        font-size: 18px;
+      }
+      .blocks-row {
+        gap: 8px;
+        margin-bottom: 1.75rem;
+      }
+      .block-chip {
+        font-size: 12px;
+        padding: 8px 12px;
+      }
+      .badge {
+        font-size: 11px;
+        padding: 5px 14px;
+        margin-bottom: 1.1rem;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .hero-title {
+        font-size: 1.9rem;
+      }
     }
   </style>
 </head>
@@ -811,7 +933,7 @@
       <div class="block-chip"><span class="dot dot-lemon"></span>Notion AI &amp; MCP</div>
     </div>
 
-    <a href="#payment" class="cta-btn">Đăng ký ngay — 10.000đ</a>
+    <a href="#payment" class="cta-btn">Đăng ký ngay — 999.000đ</a>
     <p class="price-note">Khóa học sẽ khai giảng khi đủ tối thiểu 10 học viên</p>
   </div>
 
@@ -1021,7 +1143,7 @@
       <h2 class="section-title" style="text-align:center; margin-bottom: 1.25rem;">Bắt đầu hành trình Notion của bạn</h2>
 
       <div class="price-card">
-        <div class="price-big">10K</div>
+        <div class="price-big">999K</div>
         <div class="price-unit">đồng · Trọn bộ 13 buổi</div>
 
         <div class="perks">
@@ -1061,7 +1183,7 @@
 
             <div class="qr-label">
               Quét mã QR để thanh toán<br>
-              <strong>Chuyển khoản 10.000đ</strong>
+              <strong>Chuyển khoản 999.000đ</strong>
             </div>
 
             <div class="qr-countdown" id="qr-countdown">
@@ -1109,7 +1231,7 @@
   </div>
 
   <footer>
-    Khóa học "Thành thạo Notion qua 5 dự án thực chiến" · 13 buổi · 10.000đ
+    Khóa học "Thành thạo Notion qua 5 dự án thực chiến" · 13 buổi · 999.000đ
     <p class="footer-note">Khóa học sẽ bắt đầu khai giảng khi đạt <strong>tối thiểu 10 học viên</strong>.</p>
   </footer>
 

@@ -24,10 +24,49 @@ export function normalizeForMatch(text) {
     .replace(/[^a-z0-9]/g, '');
 }
 
+export function buildWebhookText(data) {
+  return [
+    data.content,
+    data.description,
+    data.code,
+    data.subAccount,
+  ]
+    .filter((part) => part != null && String(part).trim())
+    .join(' ');
+}
+
 export function contentMatchesPayment(content, zaloName) {
   const normalizedContent = normalizeForMatch(content);
   const normalizedName = normalizeForMatch(zaloName);
-  return normalizedContent.includes('notion') && normalizedContent.includes(normalizedName);
+
+  if (!normalizedName || normalizedName.length < 2) {
+    return false;
+  }
+
+  // Khớp tên Zalo trong nội dung CK (bỏ dấu, không phân biệt hoa thường)
+  if (normalizedContent.includes(normalizedName)) {
+    return true;
+  }
+
+  // Một số ngân hàng chỉ gửi phần tên (bỏ khoảng trắng hoàn toàn)
+  const compactContent = normalizedContent.replace(/\s/g, '');
+  const compactName = normalizedName.replace(/\s/g, '');
+  if (compactName.length >= 2 && compactContent.includes(compactName)) {
+    return true;
+  }
+
+  // Tên nhiều từ: khớp nếu mọi từ trong tên đều xuất hiện trong nội dung
+  const nameParts = zaloName
+    .trim()
+    .split(/\s+/)
+    .map((part) => normalizeForMatch(part))
+    .filter((part) => part.length >= 2);
+
+  if (nameParts.length > 1) {
+    return nameParts.every((part) => normalizedContent.includes(part));
+  }
+
+  return false;
 }
 
 function paymentKey(sessionId) {
@@ -90,7 +129,7 @@ export async function processSepayWebhook(kv, data) {
   }
 
   const amount = Number(data.transferAmount || 0);
-  const content = String(data.content || data.description || '');
+  const content = buildWebhookText(data);
 
   if (amount < COURSE_AMOUNT) {
     return;
