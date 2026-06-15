@@ -778,6 +778,18 @@
       background: var(--surface);
     }
 
+    .footer-note {
+      margin-top: 0.75rem;
+      font-size: 13px;
+      color: var(--muted);
+      line-height: 1.55;
+    }
+
+    .footer-note strong {
+      color: var(--coral-dark);
+      font-weight: 600;
+    }
+
     @media (max-width: 480px) {
       .info-grid { grid-template-columns: 1fr; }
       .span-2    { grid-column: span 1; }
@@ -1109,6 +1121,7 @@
 
   <footer>
     Khóa học "Thành thạo Notion qua 5 dự án thực chiến" · 13 buổi · 999.000đ
+    <p class="footer-note">Khóa học sẽ bắt đầu khai giảng khi đạt <strong>tối thiểu 10 học viên</strong>.</p>
   </footer>
 
   <script>
