@@ -347,6 +347,12 @@
       padding: 1.4rem 1.5rem;
     }
 
+    .pain-list {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
     .pain-box {
       background: var(--pain-bg);
       border: 1px solid var(--pain-border);
@@ -446,36 +452,42 @@
     .info-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: 12px;
+      gap: 16px;
     }
 
     .info-card {
       background: var(--bg);
       border: 1px solid var(--border);
       border-radius: var(--radius-md);
-      padding: 18px 20px;
+      padding: 28px 24px;
+      min-height: 148px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
     }
 
     .info-card .icon {
-      font-size: 22px;
+      font-size: 30px;
       color: var(--coral);
-      margin-bottom: 8px;
+      margin-bottom: 12px;
     }
 
     .info-card .label {
-      font-size: 11px;
+      font-size: 13px;
       color: var(--faint);
       text-transform: uppercase;
       letter-spacing: 0.06em;
       font-weight: 700;
-      margin-bottom: 4px;
+      margin-bottom: 8px;
     }
 
     .info-card .value {
-      font-size: 15px;
+      font-size: clamp(17px, 2.2vw, 20px);
       font-weight: 600;
       color: var(--text);
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
     .span-2 { grid-column: span 2; }
@@ -835,6 +847,20 @@
         padding: 0 12px 14px 12px;
       }
 
+      .info-card {
+        padding: 22px 16px;
+        min-height: 128px;
+      }
+
+      .info-card .icon {
+        font-size: 26px;
+        margin-bottom: 10px;
+      }
+
+      .info-card .value {
+        font-size: 17px;
+      }
+
       .payment-section {
         padding: 1rem 1rem 2rem;
       }
@@ -942,12 +968,17 @@
       <div class="section-label">Vấn đề</div>
       <h2 class="section-title">Bạn thấy Notion hay nhưng không biết bắt đầu từ đâu?</h2>
 
-      <div class="pain-box">
-        <p>Nhiều người thấy Notion rất mạnh mẽ — được bạn bè giới thiệu hoặc thấy trên mạng — nhưng mở ra lại loay hoay không biết dùng như thế nào, không biết tổ chức ra sao, rốt cuộc bỏ không dùng.</p>
+      <div class="pain-list">
+        <div class="pain-box">
+          <p>Nhiều người thấy Notion rất mạnh mẽ — được bạn bè giới thiệu hoặc thấy trên mạng — nhưng mở ra lại loay hoay không biết dùng như thế nào, không biết tổ chức ra sao, rốt cuộc bỏ không dùng.</p>
+        </div>
+        <div class="pain-box">
+          <p>Nhiều người cũng rất ngại xem video quay sẵn dài trên YouTube hay các khóa học online — xem một lúc là mất tập trung, không hỏi được khi vướng, và cuối cùng vẫn không biết áp dụng vào thực tế.</p>
+        </div>
       </div>
 
       <div class="solution-box">
-        <p><strong>Giải pháp:</strong> Học qua dự án thực chiến. Mỗi buổi bạn xây một thứ có ích ngay — từ to-do list đến hệ thống tài chính hoàn chỉnh. Vướng đâu hỏi ngay, sửa luôn.</p>
+        <p><strong>Giải pháp:</strong> Học trực tiếp qua dự án thực chiến — không phải xem video quay sẵn. Mỗi buổi bạn xây một thứ có ích ngay — từ to-do list đến hệ thống tài chính hoàn chỉnh. Vướng đâu hỏi ngay, sửa luôn.</p>
       </div>
     </div>
   </div>
