@@ -1,0 +1,16 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "notion-course",
+  "main": "src/index.js",
+  "compatibility_date": "2025-04-01",
+  "assets": {
+    "directory": "./public",
+    "binding": "ASSETS"
+  },
+  "kv_namespaces": [
+    {
+      "binding": "PAYMENTS",
+      "id": "5e94d063eb48405c976fe11cf0be1ca7"
+    }
+  ]
+}
